@@ -1,0 +1,22 @@
+﻿@model ProductModel;
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card">
+    <h5 class="card-header">Eliminar producto</h5>
+    <div class="card-body">
+        <form asp-action="Delete" asp-controller="Mantainance" method="post">
+            <input asp-for="ProductId" type="hidden" class="form-control">
+            <div class="alert alert-danger" role="alert">
+                ¿Esta seguro que desea eliminar el producto con el codigo: @Html.DisplayTextFor(m => m.ProductId) ?
+            </div>
+
+            <button type="submit" class="btn btn-danger btn-lg">Eliminar</button>         
+            <a asp-action="Listing" asp-controller="Mantainance" class="btn btn-secondary">Cancelar</a>
+        </form>
+
+    </div>
+</div>
+

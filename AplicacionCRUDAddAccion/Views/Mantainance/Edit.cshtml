@@ -1,0 +1,73 @@
+﻿@model ProductModel;
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card">
+    <h5 class="card-header">Editar producto</h5>
+    <div class="card-body">
+        <form asp-action="Edit" asp-controller="Mantainance" method="post">
+            <input asp-for="ProductId" type="hidden" class="form-control">
+            <div class="input-group mb-3">
+                <span class="input-group-text">Codigo</span>
+                <input asp-for="ProductId" type="text" class="form-control" disabled>
+                <span asp-validation-for="ProductId" class="text-danger"></span>
+            </div>
+
+            <div class="input-group mb-3">
+                <span class="input-group-text">Descripcion</span>
+                <input asp-for="ProductDescription" type="text" class="form-control">
+                <span asp-validation-for="ProductDescription" class="text-danger"></span>
+            </div>
+
+            <div class="input-group mb-3">
+                <label class="input-group-text">Categoria</label>
+                <select asp-for="CategoryProductId" class="form-select">
+                    <option selected>Seleccionar</option> 
+                    <option value="1">Limpieza</option>
+                    <option value="2">Alimento</option>
+                    <option value="3">Decoracion</option>
+                </select>
+                <span asp-validation-for="CategoryProductId" class="text-danger"></span>
+            </div>
+
+            <div class="input-group mb-3 row gx-3 gy-2 align-items-center">
+                <div class="col-sm">
+                    <label class="input-group-text">Stock</label>
+                </div>
+                <div class="col-sm">
+                    <input asp-for="Stock" type="text" class="form-control" placeholder="Stock">
+                    
+                </div>
+                <div class="col-sm">
+                    <label class="input-group-text">Precio unitario</label>
+                </div>
+                <div class="col-sm">
+                    <input asp-for="Price" type="text" class="form-control" placeholder="Precio unitario">
+                    <span asp-validation-for="Price" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="input-group mb-3 row gx-3 gy-2 align-items-center">
+                <div class="col-sm">
+                    <label class="input-group-text">¿Tiene descuento?</label>
+                </div>
+                <div class="col-sm">
+                    <input asp-for="HaveECDiscount" class="form-check-input" type="checkbox">
+                </div>
+                <div class="col-sm">
+                    <label class="input-group-text">Activo</label>
+                </div>
+                <div class="col-sm">
+                    <input asp-for="IsActive" class="form-check-input" type="checkbox">
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-lg">Guardar</button>
+            <a asp-action="Listing" asp-controller="Mantainance" class="btn btn-secondary">Cancelar</a>
+        </form>
+
+    </div>
+</div>
+

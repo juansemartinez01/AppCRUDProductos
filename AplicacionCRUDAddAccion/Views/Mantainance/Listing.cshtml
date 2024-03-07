@@ -1,0 +1,74 @@
+﻿@model List<ProductModel>
+@{
+    ViewData["Title"] = "Listing";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="~/filesaver.js/filesaver.min.js"></script>
+<script src="~/filesaver.js/filesaver.js"></script>
+<script src="~/tableexport/js/tableexport.min.js"></script>
+<script src="~/tableexport/js/tableexport.js"></script>
+<link href="~/tableexport/css/tableexport.min.css" rel="stylesheet" />
+<link href="~/tableexport/css/tableexport.css" rel="stylesheet" />
+
+<div class="card container-fluid">
+    <h5 class="card-header">Listado de productos</h5>
+    <div class="card-body">
+        <a asp-action="Save" asp-controller="Mantainance" class="btn btn-success">Nuevo producto</a>
+        <a asp-action="ExportarProductosAExcel" asp-controller="Mantainance" class="btn btn-success">Exportar</a>
+        <hr />
+        <table class="table table-bordered table-sm">
+            <thead>
+                <th>Id Producto</th>
+                <th>Descripcion</th>
+                <th>Categoria</th>
+                <th>Stock</th>
+                <th>Precio unitario</th>
+                <th>Descuento Web</th>
+                <th>Activo</th>
+                <th>Editar</th>
+                <th>Eliminar</th>
+            </thead>
+
+            <tbody>
+
+                @foreach(var item in Model)
+                {
+                    <tr>
+                        <td>@item.ProductId</td>
+                        <td>@item.ProductDescription</td>
+                        <td>@item.CategoryString</td>
+                        <td>@item.Stock</td>
+                        <td>@item.Price</td>
+                        @if (item.HaveECDiscount)
+                        {
+                            <td>Si</td>
+                        }
+                        else
+                        {
+                            <td>No</td>
+                        }
+                        @if (item.IsActive)
+                        {
+                            <td>Activo</td>
+                        }
+                        else
+                        {
+                            <td>Inactivo</td>
+                        }
+                        <td>
+                        <a asp-action="Edit" asp-controller="Mantainance" class="btn btn-primary btn-sm" asp-route-IdProducto="@item.ProductId">Editar</a>
+                        </td>
+                        <td>
+                            <a asp-action="Delete" asp-controller="Mantainance" class="btn btn-danger btn-sm" asp-route-IdProducto="@item.ProductId">Eliminar</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+        
+
+    </div>
+</div>
+
